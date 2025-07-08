@@ -25,6 +25,7 @@ def registrar_estudiante():
                                  'edad': edad,
                                  'materias del semestre':materias_tuplas,
                                  'calificaciones':calificaciones}
+    print("Estudiante registrado exitosamente")
     return estudiante    
 
 def mostrar_resumen(diccionario):
@@ -68,12 +69,16 @@ def mostrar_aprobados(diccionario):
 def buscar_por_id(diccionario,id):
     return diccionario.get(id,"Alumno no presente")
 
+def menu():
+    print("1. Regristar estudiante")
+    print("2. Mostrar información")
+    print("3. Mostrar aprobados")
+    print("4. Encontrar alumno")
+    print("5. Mostrar Menu")
+    print("0. Salir")
+
 
             
 
-hash_propia("Ruben")
-hash_propia("Arturo Carlos")
-hash_propia("Armando Perez de la sal")
-hash_propia("Adela")
-print(hash_propia("roberto"))
+
 
