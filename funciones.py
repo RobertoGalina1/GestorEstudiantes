@@ -21,19 +21,43 @@ def mostrar_resumen(diccionario):
     if not diccionario:
         print("¡No se han registrado estudiantes!")
         return
-    print("ESTUDIANTES REGISTRADOS")
+    print("--------------------ESTUDIANTES REGISTRADOS--------------------")
+    
     for id,info in diccionario.items():
+        print(20*"-")
         print("ID del estudiante: ",id)
         print("Nombre: ",info['nombre'])
         print("Edad: ",info['edad'])
         print('Materias y Calificaciones')
-        print("*****************************************")
+        print(20*"-")
         for materia,cali in info['calificaciones'].items():
-            print(materia," --- ",cali)
-        print("Promedio: ",sum(info['calificaciones'].values())/len(info['calificaciones']))
-        print("*****************************************")
+            print(f'|{materia} --- {cali}|')
+        promedio = sum(info['calificaciones'].values())/len(info["calificaciones"])
+        print('Promedio: ',promedio)
+        print(20*"-")
+        
 
+def mostrar_aprobados(diccionario):
+    aprobados = False
+    for id,info in diccionario.items():
+        promedio = sum(info['calificaciones'].values())/len(info["calificaciones"])
+        if promedio >= 6:
+            aprobados = True
+            print(20*"-")   
+            print("ID del estudiante: ",id)
+            print("Nombre: ",info['nombre'])
+            print("Edad: ",info['edad'])
+            print('Materias y Calificaciones')
+            print(20*"-")
+            print({materia:(cali,'aprobado') if cali >=  6 else (cali,'reprobado') for materia,cali in info['calificaciones'].items()})
+            print('Promedio',promedio)
+            print(20*"-")
+    if aprobados:
+        print("Ningún alumno tiene el promedio aprobatorio")
 
+def buscar_por_id(diccionario,id):
+    return diccionario.get(id,"Alumno no presente")
+            
 
 
 
