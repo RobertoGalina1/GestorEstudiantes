@@ -1,3 +1,14 @@
+from random import randint,seed
+
+def hash_propia(nombre):
+    seed(nombre)
+    cantidad = len(nombre)
+    caracteres = [str(x) for x in range(1,cantidad*randint(3,10))]
+    #print(caracteres)
+    id = "".join(caracteres[-1:-9:-2])
+    #print(id)
+    return int(id)
+    
 def registrar_estudiante():
     estudiante = {}
     calificaciones = {}
@@ -9,8 +20,7 @@ def registrar_estudiante():
         print("Materia:",materia)
         calificacion = float(input('Ingrese la calificación:'))
         calificaciones[materia] = calificacion
-    estudiante_hash = list(str(int(hash(nombre))))
-    estudiante_id = "".join(estudiante_hash[1::2])
+    estudiante_id  = hash_propia(nombre.lower())
     estudiante[estudiante_id] = {'nombre':nombre,
                                  'edad': edad,
                                  'materias del semestre':materias_tuplas,
@@ -52,12 +62,18 @@ def mostrar_aprobados(diccionario):
             print({materia:(cali,'aprobado') if cali >=  6 else (cali,'reprobado') for materia,cali in info['calificaciones'].items()})
             print('Promedio',promedio)
             print(20*"-")
-    if aprobados:
+    if not aprobados:
         print("Ningún alumno tiene el promedio aprobatorio")
 
 def buscar_por_id(diccionario,id):
     return diccionario.get(id,"Alumno no presente")
+
+
             
 
-
+hash_propia("Ruben")
+hash_propia("Arturo Carlos")
+hash_propia("Armando Perez de la sal")
+hash_propia("Adela")
+print(hash_propia("roberto"))
 
